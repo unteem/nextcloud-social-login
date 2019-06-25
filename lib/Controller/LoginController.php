@@ -294,11 +294,11 @@ class LoginController extends Controller
 
         $profile->data['default_group'] = $config['default_group'];
 
-        $uid = $provider.'-'.$profileId;
+        $uid = $profileId;
         if (strlen($uid) > 64) {
-            $uid = $provider.'-'.md5($profileId);
+            $uid = md5($profileId);
         }
-        return $this->login($uid, $profile, $provider.'-');
+        return $this->login($uid, $profile);
     }
 
     private function login($uid, Profile $profile, $newGroupPrefix = '')
